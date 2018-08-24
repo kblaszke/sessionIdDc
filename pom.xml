@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>pl.blaszak.mikroservice.session</groupId>
+	<artifactId>dcAPI</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>dcAPI</name>
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<jaxb2.plugin.version>0.14.0</jaxb2.plugin.version>
+	</properties>
+
+	<dependencies>
+	</dependencies>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources/schemas</directory>
+				<targetPath>src/main/resources/schemas</targetPath>
+			</resource>
+			<resource>
+				<directory>src/main/resources/bindings</directory>
+				<targetPath>src/main/resources/bindings</targetPath>
+			</resource>
+		</resources>
+
+
+		<plugins>
+			<plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<version>${jaxb2.plugin.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<schemaDirectory>src/main/resources/schemas</schemaDirectory>
+					<bindingDirectory>src/main/resources/bindings</bindingDirectory>
+					<generateDirectory>src/main/java</generateDirectory>
+					<episodeFile>src/main/resources/META-INF/domain-jaxb.episode</episodeFile>
+					<schemaIncludes>
+						<include>*.xsd</include>
+					</schemaIncludes>
+					<schemaExcludes>
+						<exclude>*.xs</exclude>
+					</schemaExcludes>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+
+</project>
